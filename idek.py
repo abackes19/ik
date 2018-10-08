@@ -1,5 +1,3 @@
-# inverse kinematics take 1!
-# math syntax: https://docs.python.org/2/library/math.html
 import math
 import setup
 import RoboPiLib as RPL
@@ -39,13 +37,17 @@ a_elbow = a_three # elbow angle, flush back to shoulder is 0
 print a_shoulder
 
 def shoulder(a):
-    a = a * 2000 / math.pi
+    a = a * 2000 / math.pi  # fix ratios! right now 2000steps ~ 90° but not according to this
     RPL.servoWrite(s_pin, a)
 
-shoulder(a_shoulder)
 
 print a_elbow
 
-def shoulder(a):
+def elbow(a):
     a = a * 2000 / math.pi
     RPL.servoWrite(s_pin, a)
+
+if 400 < a_shoulder < 2000 # check these numbers - making sure it only tries to go to angles it can. shoulder is more limited than elbow
+    shoulder(a_shoulder)
+if 400 < a_elbow < 2000
+    elbow(a_elbow)
