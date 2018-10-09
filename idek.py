@@ -6,7 +6,6 @@ s_pin = 1
 e_pin = 0
 
 
-# 390 to 2440 = 180°
 
 RPL.servoWrite(s_pin,0)
 RPL.servoWrite(e_pin,0)
@@ -37,17 +36,22 @@ a_elbow = a_three # elbow angle, flush back to shoulder is 0
 print a_shoulder
 
 def shoulder(a):
-    a = a * 2000 / math.pi  # fix ratios! right now 2000steps ~ 90° but not according to this
+    a = (a * 2000 / math.pi) + 400  # fix ratios! right now 2000steps ~ 90° but not according to this
     RPL.servoWrite(s_pin, a)
 
 
 print a_elbow
 
 def elbow(a):
-    a = a * 2000 / math.pi
+    a = (a * 2000 / math.pi) + 400
     RPL.servoWrite(s_pin, a)
 
 if 400 < a_shoulder < 2000 # check these numbers - making sure it only tries to go to angles it can. shoulder is more limited than elbow
     shoulder(a_shoulder)
+else:
+    print "Shoulder angle is unreachable."
+
 if 400 < a_elbow < 2000
     elbow(a_elbow)
+else:
+    print "Elbow angle is unreachable."
