@@ -41,14 +41,14 @@ while True:
     print a_shoulder
 
     def shoulder(a):
-        a = (a * 2000 / math.pi) + 400  # fix ratios! right now 2000steps ~ 90° but not according to this
+        a = (a * 6000 / math.pi) + 400  # fix ratios! right now 2000steps ~ 90° but not according to this
         RPL.servoWrite(s_pin, a)
 
 
     print a_elbow
 
     def elbow(a):
-        a = (a * 6000 / math.pi) + 400
+        a = (a * 4000 / math.pi) + 400
         RPL.servoWrite(s_pin, a)
 
     if 400 < a_shoulder < 2000 # check these numbers - making sure it only tries to go to angles it can. shoulder is more limited than elbow
