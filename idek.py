@@ -7,8 +7,8 @@ e_pin = 0
 
 
 
-RPL.servoWrite(s_pin,0)
-RPL.servoWrite(e_pin,0)
+RPL.servoWrite(s_pin,400)
+RPL.servoWrite(e_pin,400)
 
 
 d_one = 12 # this is the distance from shoulder to elbow
