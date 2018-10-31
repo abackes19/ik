@@ -1,3 +1,4 @@
+# forgot what I was doing with this one.
 import math
 import setup
 import RoboPiLib as RPL
@@ -49,5 +50,6 @@ def elbow(a):
 
 if 400 < a_shoulder < 2000 # check these numbers
     shoulder(a_shoulder)
+
 if 400 < a_elbow < 2000
     elbow(a_elbow)
