@@ -36,6 +36,7 @@ a_two = math.asin((d_two * math.sin(a_three) / d_three)) # angle between shoulde
 if pos(y) == True: # point is above x axis, all good
     print "Point above x axis"
     a_four = math.atan2(y , x) # angle between 0 line and wrist
+    a_shoulder = a_four + a_two * 180/math.pi
 elif a_two * 180/math.pi >= math.fabs(math.atan2(y, x) * 180/math.pi):
     print "Point above x axis, elbow is not"
     a_four = a_two - math.atan2(y, x)
@@ -49,7 +50,7 @@ print a_two * 180/math.pi
 print math.fabs(math.atan2(y, x) * 180/math.pi)
 #print a_three * 180/math.pi
 print a_four * 180/math.pi
-a_shoulder = a_four * 180/math.pi # angle the shoulder joint should be at from the 0 line
+ # angle the shoulder joint should be at from the 0 line
 a_elbow = a_three * 180/math.pi # elbow angle, flush back to shoulder is 0
 
 print "Distance from base: %i units" % d_three
