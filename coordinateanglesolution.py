@@ -36,13 +36,15 @@ a_two = math.asin((d_two * math.sin(a_three) / d_three)) # angle between shoulde
 if pos(y) == True: # point is above x axis, all good
     print "Point above x axis"
     a_four = math.atan2(y , x) # angle between 0 line and wrist
-    a_shoulder = a_four + a_two * 180/math.pi
+    a_shoulder = (a_four + a_two) * 180/math.pi
 elif a_two * 180/math.pi >= math.fabs(math.atan2(y, x) * 180/math.pi):
     print "Point above x axis, elbow is not"
     a_four = a_two - math.atan2(y, x)
+    a_shoulder = (a_four) * 180/math.pi
 elif a_two * 180/math.pi < math.fabs(math.atan2(y, x) * 180/math.pi):
     print "All of arm below x axis"
     a_four = math.atan2(y , x) - a_two
+    a_shoulder = (a_four) * 180/math.pi
 else:
     print "guess I'll die"
 
