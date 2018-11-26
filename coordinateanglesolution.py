@@ -1,5 +1,8 @@
 # inverse kinematics take 1!
 # math syntax: https://docs.python.org/2/library/math.html
+# distance from center of hole to hole: 8mm
+
+
 import math
 import fractions
 import sys
@@ -18,8 +21,6 @@ def pos(n):
     if n >= 0:
         return True
 
-e_y = -2 # for now, idk how to find this. the y coordinate of the elbow joint
-
 d_three = math.sqrt(math.pow(y, 2) + math.pow(x, 2)) # determining distance from shoulder to wrist ^
 
 o_reach = d_one + d_two
@@ -32,6 +33,7 @@ if d_three < i_reach:
 sqd_three = math.pow(y, 2) + math.pow(x, 2)
 a_three = math.acos((sqd_one + sqd_two - sqd_three) / (2 * d_one * d_two))
 a_two = math.asin((d_two * math.sin(a_three) / d_three)) # angle between shoulder and wrist
+a_four = math.atan2(y , x)
 
 if pos(y) == True: # point is above x axis, all good
     print "Point above x axis"
@@ -39,8 +41,7 @@ if pos(y) == True: # point is above x axis, all good
     a_shoulder = (a_four + a_two) * 180/math.pi
 elif a_two * 180/math.pi >= math.fabs(math.atan2(y, x) * 180/math.pi):
     print "Point above x axis, elbow is not"
-    a_four = a_two - math.atan2(y, x)
-    a_shoulder = (a_four) * 180/math.pi
+    a_shoulder = a_two - a_four * 180/math.pi
 elif a_two * 180/math.pi < math.fabs(math.atan2(y, x) * 180/math.pi):
     print "All of arm below x axis"
     a_four = math.atan2(y , x) - a_two
